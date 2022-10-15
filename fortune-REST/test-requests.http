@@ -1,0 +1,39 @@
+@hostname = localhost
+@port = 3000
+@host = {{hostname}}:{{port}}
+
+@category_general = general
+
+# Some random ID I know is in the DB
+@example_fortune_uuid = 6346fe1f652348d9eb72faa9
+
+###
+POST http://{{host}}/fortunes HTTP/1.1 
+content-type: application/json
+
+{
+    "category": "general",
+    "fortune": "You will live another day."
+}
+
+###
+GET http://{{host}}/fortunes HTTP/1.1
+
+###
+GET http://{{host}}/fortunes/{{category_general}} HTTP/1.1
+
+###
+GET http://{{host}}/fortune/{{example_fortune_uuid}} HTTP/1.1
+
+###
+
+PUT http://{{host}}/fortune/{{example_fortune_uuid}} HTTP/1.1
+content-type: application/json
+
+{
+    "category": "general",
+    "fortune": "You will not live another day."
+}
+
+###
+DELETE http://{{host}}/fortune/{{example_fortune_uuid}} HTTP/1.1
