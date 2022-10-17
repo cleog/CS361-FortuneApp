@@ -1,6 +1,7 @@
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import HomePage from './pages/HomePage'
+import HomePageAdvanced from './pages/HomePageAdvanced'
 import AddFortunePage from './pages/AddFortunePage'
 import EditFortunePage from './pages/EditFortunePage'
 import ReceiveFortunePage from './pages/ReceiveFortunePage';
@@ -15,6 +16,7 @@ function App() {
           <Routes>
             <Route path="/" element={<MainLayout />}>
               <Route index element={<HomePage />} />
+              <Route path="/advanced" element={<HomePageAdvanced/>} />
               <Route path="/add/:category" element={<AddFortunePage />} />
               <Route path="/get/:category" element={<ReceiveFortunePage />} />
               <Route path="/edit" element={<EditFortunePage />} />
