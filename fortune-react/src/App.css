@@ -112,6 +112,10 @@ p {
   text-align: center;
 }
 
+.instructions-basic-path {
+  text-align: left;
+}
+
 .App-header {
   padding-top: 4px;
   padding-bottom: 10px;
