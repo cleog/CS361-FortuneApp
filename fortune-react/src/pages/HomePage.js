@@ -6,7 +6,7 @@ function HomePage() {
         <div className='receive'>
             <h2>Receive A Fortune</h2>
             <h3>Quick Option:</h3>
-            <Link to="/get/general" className='link'>Get General Fortune</Link>
+            <Link to="/get/general" className='link' >Get General Fortune</Link>
             <br/>
             <h3>Or choose one category below:</h3>
             <Link to="/get/general" className='link'>General</Link>
