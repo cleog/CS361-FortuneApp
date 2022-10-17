@@ -10,7 +10,6 @@
 
 .add {
   position: sticky;
-  width: 400px;
   border-right: black;
   border-style: solid;
   border-width: 3px;
@@ -18,7 +17,6 @@
 
 .receive {
   position: sticky;
-  width: 400px;
   border-left: black;
   border-style: solid;
   border-width: 3px;

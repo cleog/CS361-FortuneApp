@@ -5,7 +5,7 @@
 @category_general = general
 
 # Some random ID I know is in the DB
-@example_fortune_uuid = 634c50fb143c1fb0e268e869
+@example_fortune_uuid = 634cc4547bb37264e5fe7bc5
 
 ###
 POST http://{{host}}/fortunes HTTP/1.1 
