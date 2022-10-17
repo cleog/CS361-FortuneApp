@@ -79,16 +79,20 @@ footer {
 }
 
 h1 {
-  font-size: 45px;
+  font-size: 40px;
+  margin-top: 15px;
+  margin-bottom: 20px;
   border-bottom-style: solid;
 }
 
 h2 {
-  font-size: 30px;
+  margin-top: 15px;
+  font-size: 28px;
 }
 
 h3 {
-  font-size: 25px;
+  margin-top: 8px;
+  font-size: 22px;
 }
 
 
@@ -96,19 +100,27 @@ p {
   font-size: 25px;
 }
 
+.instructions {
+  border-style: solid;
+  border-color: black;
+  border-width: 2px;
+  padding: 2px 12px 12px 12px;
+  text-align: left;
+}
+
 .App {
   text-align: center;
 }
 
 .App-header {
-  padding-top: 10px;
+  padding-top: 4px;
   padding-bottom: 10px;
   min-height: 30vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  font-size: calc(10px + 1.5vmin);
 }
 
 .App-link {
@@ -141,6 +153,8 @@ Link:link {color:rgb(187, 225, 201);}
   color:rgb(188, 230, 194);
 
 }
+
+
 
 th {
   padding-top: 1px;

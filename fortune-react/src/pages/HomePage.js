@@ -11,10 +11,12 @@ function HomePage() {
                 <br />
                 <h3>Or choose one category below:</h3>
                 <Link to="/get/general" className='link'>General</Link>
-                <br></br>
+                <br/>
                 <Link to="/get/humor-included" className='link'>Humor-Included</Link>
-                <br></br>
+                <br/>
                 <Link to="/get/child-friendly" className='link'>Child-Friendly</Link>
+                <br/>
+                &nbsp;
             </div>
         </div>
     )
