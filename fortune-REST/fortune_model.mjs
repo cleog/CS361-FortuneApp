@@ -42,6 +42,19 @@ const findFortunes = async (filter) => {
     return query.exec()
 }
 
+// Returns an array of 1 items currently - but could be extended to return N
+const getRandomFortune = async (category) => {
+    // TODO: Make this random. Currently it just gets first of the chosen category
+    // const query = Fortune.findOne({ category })
+    // return query.exec()
+
+    const query = Fortune.aggregate([
+        { $match: { category } },
+        { $sample: { size: 1 } } ])
+    return query.exec()
+
+}
+
 const findFortuneById = async (_id) => {
     const searchResult = Fortune.findById(_id)
     return searchResult.exec()
@@ -70,4 +83,4 @@ function isCategoryValid(category) {
     return category == "general" || category == "humor-included" || category == "child-friendly";
 }
 
-export { createFortune, findFortunes, findFortuneById, replaceFortune, deleteById, isCategoryValid }
+export { createFortune, findFortunes, findFortuneById, replaceFortune, deleteById, isCategoryValid, getRandomFortune }

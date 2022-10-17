@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import HomePage from './pages/HomePage'
 import AddFortunePage from './pages/AddFortunePage'
 import EditFortunePage from './pages/EditFortunePage'
+import ReceiveFortunePage from './pages/ReceiveFortunePage';
 import MainLayout from './layouts/MainLayout';
 
 
@@ -14,7 +15,8 @@ function App() {
           <Routes>
             <Route path="/" element={<MainLayout />}>
               <Route index element={<HomePage />} />
-              <Route path="/add" element={<AddFortunePage />} />
+              <Route path="/add/:category" element={<AddFortunePage />} />
+              <Route path="/get/:category" element={<ReceiveFortunePage />} />
               <Route path="/edit" element={<EditFortunePage />} />
             </Route>
           </Routes>

@@ -11,7 +11,7 @@ app.use(express.json());
 app.post('/fortunes', (req, res) => {
     if (req.body.fortune && req.body.category && fortunes.isCategoryValid(req.body.category) && req.body.fortune.length > 0) {
         const ownerID = "To-Do";
-        fortunes.createFortune(req.body.fortune, req.body.category, ownerID)
+        fortunes.createFortune(req.body.category, req.body.fortune, ownerID)
             .then(fortune => {
                 res.status(201).json(fortune);
             })
@@ -48,6 +48,23 @@ app.get('/fortune/:_id', (req, res) => {
         });
 
 });
+
+app.get('/randomFortune/:category', (req, res) => {
+    console.log(req.params.category)
+    console.log(fortunes)
+
+    fortunes.getRandomFortune(req.params.category)
+        .then(fortune => {
+            if (fortune !== null) {
+                res.status(200).json(fortune[0]);
+            } else {
+                res.status(404).json({ Error: 'Not found' });
+            }
+        })
+        .catch(error => {
+            res.status(404).json({ Error: 'Not found' });
+        });
+})
 
 /**
  * Retrieve fortunes. 
