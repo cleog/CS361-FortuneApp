@@ -13,6 +13,8 @@ function MainLayout() {
                     <Link to="/advanced">Advanced Home</Link>
                     &nbsp;&nbsp;
                     <Link to="/whatsnew">What's New!</Link>
+                    &nbsp;&nbsp;
+                    <Link to="/Instructions">Instructions</Link>
                     </small>
                 </span>
                 <h1>Fortune Cookie App</h1>
