@@ -1,0 +1,36 @@
+# Specification for HTTP REST API for partner microservice for Fortune Cookie app
+
+# See https://marketplace.visualstudio.com/items?itemName=humao.rest-client for the VSCode extension
+# that can be used with this file
+
+@hostname = localhost
+@port = 3001
+@host = {{hostname}}:{{port}}
+
+
+# Some random UserID I know is in the DB
+@example_userID = 634cc4547bb37264e5fe7bc5
+
+# Some random FortuneID I know is in the DB
+@example_fortuneID = 634cc4547bb37264e5fe1111
+
+@example_fortuneText = "This is fortunate"
+
+
+### POST fortuneHistory/
+# This will cause the service to add a history record of 
+# userID, fortuneID, fortuneText plus a server-generated UTC timestamp
+POST http://{{host}}/fortuneHistory HTTP/1.1 
+content-type: application/json
+
+{
+    "userID": {{example_userID}},
+    "fortuneID": {{{{example_fortuneID}}}},
+    "fortuneText": {{{{example_fortuneText}}}},
+}
+
+### GET fortuneHistory/{{userID}}
+# This should return an ARRAY of { userID, fortuneID, fortuneText, timestamp } for the specified userID
+# This array should be sorted by timestamp, newest first
+GET http://{{host}}/fortuneHistory/{{example_userID}}
+
