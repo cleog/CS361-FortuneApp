@@ -15,6 +15,8 @@ function MainLayout() {
                     <Link to="/whatsnew">What's New!</Link>
                     &nbsp;&nbsp;
                     <Link to="/Instructions">Instructions</Link>
+                    &nbsp;&nbsp;
+                    <Link to="/history">History</Link>
                     </small>
                 </span>
                 <h1>Fortune Cookie App</h1>

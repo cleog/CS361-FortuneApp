@@ -34,3 +34,10 @@ content-type: application/json
 # This array should be sorted by timestamp, newest first
 GET http://{{host}}/fortuneHistory/{{example_userID}}
 
+
+@state = "WA"
+
+### Get info on mountain
+# Example JSON response for WA:    { "name": "Mount Rainer" }
+GET http://{newhost}}/USstateInfo/tallestMountain/{{state}}
+

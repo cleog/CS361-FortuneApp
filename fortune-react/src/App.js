@@ -5,6 +5,7 @@ import HomePageAdvanced from './pages/HomePageAdvanced'
 import AddFortunePage from './pages/AddFortunePage'
 import EditFortunePage from './pages/EditFortunePage'
 import ReceiveFortunePage from './pages/ReceiveFortunePage';
+import HistoryPage from './pages/HistoryPage';
 import WhatsNew from './pages/WhatsNew';
 import InstructionsPage from './pages/InstructionsPage';
 import MainLayout from './layouts/MainLayout';
@@ -21,6 +22,7 @@ function App() {
               <Route path="/advanced" element={<HomePageAdvanced/>} />
               <Route path="/whatsnew" element={<WhatsNew/>} />
               <Route path="/instructions" element={<InstructionsPage/>} />
+              <Route path="/history" element={<HistoryPage/>} />
               <Route path="/add/:category" element={<AddFortunePage />} />
               <Route path="/get/:category" element={<ReceiveFortunePage />} />
               <Route path="/edit" element={<EditFortunePage />} />
