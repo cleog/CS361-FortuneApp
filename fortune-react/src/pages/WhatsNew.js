@@ -5,11 +5,12 @@ function WhatsNew() {
         <div>
             <h2>New Feature:</h2>
             <p>
-                Write your own fortunes to add to the possible options!
+                Create your own account to see or delete your written fortunes!
             </p>
             <h3>Benefits:</h3>
             <p>
-                You can be creative, entertain other users, and add great fortunes to the mix!
+                You can delete fortunes you have written that you are not happy with!
+                You can view your fortune history to see if they come true.
             </p>
             <h3>Costs:</h3>
             <p>

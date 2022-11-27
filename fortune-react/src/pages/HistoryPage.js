@@ -11,8 +11,6 @@ function HistoryPage() {
         const fortuneHistory = await response.json();
         setFortuneHistory(fortuneHistory)
     }
-
-
     useEffect(() => { loadFortuneHistory() }, [])
 
     return (

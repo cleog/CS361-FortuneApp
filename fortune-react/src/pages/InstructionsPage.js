@@ -6,18 +6,19 @@ function InstructionsPage() {
         <div className='instructions'>
             <h3>Instructions</h3>
             <div >
-                Welcome to Fortune Cookie App.
+                Welcome to Fortune Generator!
                 <br />
                 <br />
+                {/* optimization for tinkerers */}
                 <Link className='pageLinks' to="/advanced" >Quick Start for Tinkerers</Link>
                 <br />
                 <br />
                 The main function is to allow you to receive random fortunes.
                 <br />
-                To learn more about our new Add Fortune feature, click on "What's New!"
+                To learn more about our new Create Account, Fortune History and Delete Fortune features, click on "What's New!"
                 <br />
                 <br />
-                Basic Path:
+                Basic Path (no create account required):
                 <br />
                 <br />
                 1) Select <Link className='pageLinks' to="/" >Begin</Link>

@@ -23,7 +23,7 @@ function AddFortunePage() {
         }
         navigate("/");
     };
-
+    // confirmation to fulfill Cognitive Style Heuristic number 8:
     if (!confirmed)
     {
         return (

@@ -65,6 +65,17 @@ const addUser = async (userName, password) => {
 }
 
 
+// Quick way to print a list of users if needed
+// const dumpUsers = async () => {
+//     const list = User.find({})
+//     const results = await list.exec()
+//     console.dir(results);
+// }
+
+// dumpUsers()
+
+
+
 const createFortune = async (category, fortune, ownerID) => {
     const dateCreated = new Date().toUTCString();
     const fortuneRecord = new Fortune({ category, fortune, ownerID, dateCreated });
@@ -80,9 +91,6 @@ const findFortunes = async (filter) => {
 
 // Returns an array of 1 items currently - but could be extended to return N
 const getRandomFortune = async (category) => {
-    // TODO: Make this random. Currently it just gets first of the chosen category
-    // const query = Fortune.findOne({ category })
-    // return query.exec()
     const query = Fortune.aggregate([
         { $match: { category } },
         { $sample: { size: 1 } } ])
@@ -111,7 +119,6 @@ const replaceFortune = async(_id, category, fortune) => {
     }
     const result = await Fortune.updateOne(filter, update)
     return result.matchedCount
-    // return result.modifiedCount;
 }
 
 const deleteById = async (_id) => {
@@ -119,7 +126,6 @@ const deleteById = async (_id) => {
     return result.deletedCount;
 }
 
-// new
 const deleteAll = async (userName) => {
     const result = await Fortune.deleteMany({ownerID: userName})
     return result.deletedCount;

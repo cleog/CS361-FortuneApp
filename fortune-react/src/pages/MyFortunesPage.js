@@ -13,7 +13,7 @@ function MyFortunesPage() {
         const fortuneList = await response.json();
         setFortuneList(fortuneList)
     }
-
+    // deletes a single fortune
     const deleteFortune = async (fortune) => {
         const response = await fetch(DELETE_MYFORTUNE_URL + fortune._id, {
             method: 'DELETE',
@@ -30,7 +30,7 @@ function MyFortunesPage() {
             alert(`Failed to delete fortune, status code = ${response.status}`);
         }
     }
-
+    // deletes all fortunes
     const deleteFortunes = async () => {
         const response = await fetch(SHOW_WRITTEN_FORTUNES_URL, {
             method: 'DELETE',
@@ -49,12 +49,13 @@ function MyFortunesPage() {
     }
 
     useEffect(() => { loadFortuneList() }, [])
-    // new - need to add delete all button
     return (
         <div>
             <h3>Here are the fortunes you wrote:</h3>
             <button onClick={() => deleteFortunes()}>Delete All Fortunes</button>
+            {/* if there are no fortunes: */}
             {(fortuneList && fortuneList.length === 0) && <div>None yet!</div>}
+            {/* otherwise:  */}
             {fortuneList && fortuneList.length > 0 && (
                 <table id="writtenFortunes">
                     <thead>

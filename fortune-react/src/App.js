@@ -39,15 +39,3 @@ function App() {
 }
 
 export default App;
-
-
-
-// <BrowserRouter>
-// <div className="App-header">
-//   <Routes>
-//     <Route path="/" element={<HomePage />}/>
-//     <Route path="/add" element={<AddFortunePage />}/>
-//     <Route path="/edit" element={<EditFortunePage />}/>
-//   </Routes>
-// </div>
-// </BrowserRouter>

@@ -2,16 +2,6 @@
 
 const { createProxyMiddleware } = require('http-proxy-middleware');
 
-
-
-// module.exports = function(app) {
-//     app.use(proxy('/fortuneHistory', { target: 'http://localhost:3002/' }))
-//     app.use(proxy('/*', { target: 'http://localhost:3000/' }))
-//   }
-
-
-
-
 module.exports = function (app) {
 
     // Victoria's microservice on port 3002

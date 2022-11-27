@@ -1,7 +1,9 @@
 import 'dotenv/config';
 import * as fortunes from './fortune_model.mjs';
 import express from 'express';
-import loggedInUser from '../userid';
+
+
+const loggedInUser='Cleo9'
 
 const PORT = process.env.PORT;
 
@@ -81,7 +83,7 @@ app.get('/fortunesByUserName/:userName', (req, res) => {
         });
 
 });
-
+// get a random fortune from a specified category
 app.get('/randomFortune/:category', (req, res) => {
     console.log(req.params.category)
     console.log(fortunes)

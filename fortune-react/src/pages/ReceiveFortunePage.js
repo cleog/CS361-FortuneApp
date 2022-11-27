@@ -4,8 +4,8 @@ import loggedInUser from '../userid';
 
 const POST_HISTORY_URL = '/fortuneHistory'
 
+// Adds fortune to the fortune history using my partner's microservice.
 const postFortuneHistoryToMicroservice2 = async (receivedFortune) => {
-    console.log(" recording history for ", receivedFortune.fortune)
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -19,15 +19,15 @@ function ReceiveFortunePage() {
     const { category } = useParams()
     const [fortune, setFortune] = useState(undefined)
 
+    // randomizes recieving fortunes
     const loadRandomFortune = async (category) => {
-        console.log("loadRF")
         const response = await fetch('/randomFortune/' + category);
         const randomFortune = await response.json();
         setFortune(randomFortune)
         postFortuneHistoryToMicroservice2(randomFortune)
     }
  
-    useEffect(() => { loadRandomFortune(category) }, [])
+    useEffect(() => { loadRandomFortune(category) }, [category])
 
     return (
         <div>
@@ -37,7 +37,6 @@ function ReceiveFortunePage() {
                 <hr />
                 {fortune.fortune}
                 <hr />
-
                 <div>
                     <br />
                     <button onClick={() => loadRandomFortune(category)}>Get Another Fortune</button>

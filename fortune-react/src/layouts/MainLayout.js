@@ -6,7 +6,6 @@ function MainLayout() {
     return (
         <div>
             <h1> Fortune Generator </h1>
-            {/* <img src='/happyFortuneCookie-612x612.jpg' className="App-logo" alt="logo" /> */}
             <header className="App-header">
                 <span id='navbar'>
                     <ul id='wholeNavbar'>
@@ -20,7 +19,6 @@ function MainLayout() {
                     </ul>
                 </span>
                 <img src='/happyFortuneCookie-612x612.jpg' className="App-logo" alt="logo" />
-                {/* <h1> Fortune Cookie Generator </h1> */}
             </header>
 
             <Outlet />
