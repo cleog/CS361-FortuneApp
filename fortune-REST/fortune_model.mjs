@@ -1,4 +1,6 @@
 import mongoose from 'mongoose';
+import crypto from 'crypto';
+
 import 'dotenv/config';
 
 mongoose.connect(
@@ -7,15 +9,26 @@ mongoose.connect(
 );
 
 
-// Connect to to the database
+// Connect to the database
 const db = mongoose.connection;
 // The open event is called when the database connection successfully opens
 db.once("open", () => {
     console.log("Successfully connected to MongoDB using Mongoose!");
 });
 
+
 /**
- * Define the schema
+ * Define the User schema
+ */
+ const userSchema = mongoose.Schema({
+    userName: { type: String, required: true },
+    passwordSalt: { type: String, required: true },
+    passwordHash: { type: String, required: true },
+    dateCreated: { type: String, required: true }
+});
+
+/**
+ * Define the Fortune Cookie schema
  */
 const fortuneSchema = mongoose.Schema({
     category: { type: String, required: true },
@@ -25,9 +38,32 @@ const fortuneSchema = mongoose.Schema({
 });
 
 /**
- * Compile the model from the schema.
+ * Compile the models from the schema.
  */
+const User = mongoose.model("User", userSchema);
 const Fortune = mongoose.model("Fortune", fortuneSchema);
+
+
+const addUser = async (userName, password) => {
+
+    // First, see if this userName is taken
+    const lookup = User.findOne({userName})
+    const existingUser = await lookup.exec();
+    console.log({existingUser});
+    if (existingUser !== null)
+        throw new Error("Username taken");
+
+    // Got ideas from https://www.geeksforgeeks.org/node-js-password-hashing-crypto-module/
+    const dateCreated = new Date().toUTCString();
+    const passwordSalt = crypto.randomBytes(16).toString('hex');
+
+    // // Hashing user's salt and password with 1000 iterations, 64 length and sha512 digest
+    const passwordHash = crypto.pbkdf2Sync(password, passwordSalt, 1000, 64, `sha512`).toString(`hex`);
+    console.log({passwordHash, passwordSalt});
+    const userRecord = new User({ userName, passwordHash, passwordSalt, dateCreated });
+    return userRecord.save();
+}
+
 
 const createFortune = async (category, fortune, ownerID) => {
     const dateCreated = new Date().toUTCString();
@@ -47,7 +83,6 @@ const getRandomFortune = async (category) => {
     // TODO: Make this random. Currently it just gets first of the chosen category
     // const query = Fortune.findOne({ category })
     // return query.exec()
-
     const query = Fortune.aggregate([
         { $match: { category } },
         { $sample: { size: 1 } } ])
@@ -57,6 +92,11 @@ const getRandomFortune = async (category) => {
 
 const findFortuneById = async (_id) => {
     const searchResult = Fortune.findById(_id)
+    return searchResult.exec()
+}
+
+const findFortuneByUserName = async (userName) => {
+    const searchResult = Fortune.find({ userName })
     return searchResult.exec()
 }
 
@@ -79,8 +119,14 @@ const deleteById = async (_id) => {
     return result.deletedCount;
 }
 
+// new
+const deleteAll = async (userName) => {
+    const result = await Fortune.deleteMany({ownerID: userName})
+    return result.deletedCount;
+}
+
 function isCategoryValid(category) {
     return category == "general" || category == "humor-included" || category == "child-friendly";
 }
 
-export { createFortune, findFortunes, findFortuneById, replaceFortune, deleteById, isCategoryValid, getRandomFortune }
+export { addUser, createFortune, findFortunes, findFortuneById, findFortuneByUserName, replaceFortune, deleteById, deleteAll, isCategoryValid, getRandomFortune }

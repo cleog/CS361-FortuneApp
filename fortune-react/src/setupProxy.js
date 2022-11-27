@@ -26,7 +26,22 @@ module.exports = function (app) {
 
     // My microservice on port 3000
     app.use(
+        '/user',
+        createProxyMiddleware({
+            target: 'http://localhost:3000',
+            changeOrigin: true,
+        })
+    );
+
+    app.use(
         '/fortune',
+        createProxyMiddleware({
+            target: 'http://localhost:3000',
+            changeOrigin: true,
+        })
+    );
+    app.use(
+        '/fortunesByUserName',
         createProxyMiddleware({
             target: 'http://localhost:3000',
             changeOrigin: true,

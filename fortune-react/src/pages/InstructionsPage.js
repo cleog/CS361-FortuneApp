@@ -9,7 +9,7 @@ function InstructionsPage() {
                 Welcome to Fortune Cookie App.
                 <br />
                 <br />
-                <Link to="/advanced" className='link' >Quick Start for Tinkerers</Link>
+                <Link className='pageLinks' to="/advanced" >Quick Start for Tinkerers</Link>
                 <br />
                 <br />
                 The main function is to allow you to receive random fortunes.
@@ -20,7 +20,7 @@ function InstructionsPage() {
                 Basic Path:
                 <br />
                 <br />
-                1) Select <Link to="/" className='link' >Begin</Link>
+                1) Select <Link className='pageLinks' to="/" >Begin</Link>
                 <br />
                 2) Click "Get General Fortune" OR select a category link below for a specific category
                 <br />

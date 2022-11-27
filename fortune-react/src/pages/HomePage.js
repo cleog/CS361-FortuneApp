@@ -7,14 +7,14 @@ function HomePage() {
             <div>
                 <h2>Receive A Fortune</h2>
                 <h3>Quick Option:</h3>
-                <Link to="/get/general" className='link' >Get General Fortune</Link>
+                <Link to="/get/general" className='pageLinks' >Get General Fortune</Link>
                 <br />
                 <h3>Or choose one category below:</h3>
-                <Link to="/get/general" className='link'>General</Link>
+                <Link to="/get/general" className='pageLinks'>General</Link>
                 <br/>
-                <Link to="/get/humor-included" className='link'>Humor-Included</Link>
+                <Link to="/get/humor-included" className='pageLinks'>Humor-Included</Link>
                 <br/>
-                <Link to="/get/child-friendly" className='link'>Child-Friendly</Link>
+                <Link to="/get/child-friendly" className='pageLinks'>Child-Friendly</Link>
                 <br/>
                 &nbsp;
             </div>

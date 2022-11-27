@@ -1,6 +1,7 @@
 import 'dotenv/config';
 import * as fortunes from './fortune_model.mjs';
 import express from 'express';
+import loggedInUser from '../userid';
 
 const PORT = process.env.PORT;
 
@@ -8,10 +9,25 @@ const app = express();
 
 app.use(express.json());
 
+app.post('/user', (req, res) => {
+    if (req.body.userName && req.body.password) {
+        fortunes.addUser(req.body.userName, req.body.password)
+        .then(fortune => {
+            res.status(201).json(fortune);
+        })
+        .catch(error => {
+            console.log("an error happened!", error.message);
+            res.status(400).json({ Error: error.message });
+        })
+    }
+    else {
+        res.status(400).json({ Error: 'Invalid Parameters' });
+    }
+});
+
 app.post('/fortunes', (req, res) => {
     if (req.body.fortune && req.body.category && fortunes.isCategoryValid(req.body.category) && req.body.fortune.length > 0) {
-        const ownerID = "To-Do";
-        fortunes.createFortune(req.body.category, req.body.fortune, ownerID)
+        fortunes.createFortune(req.body.category, req.body.fortune, loggedInUser)
             .then(fortune => {
                 res.status(201).json(fortune);
             })
@@ -36,6 +52,23 @@ app.post('/fortunes', (req, res) => {
 app.get('/fortune/:_id', (req, res) => {
     const fortuneID = req.params._id;
     fortunes.findFortuneById(fortuneID)
+        .then(fortune => {
+            if (fortune !== null) {
+                res.status(200).json(fortune);
+            } else {
+                res.status(404).json({ Error: 'Not found' });
+            }
+        })
+        .catch(error => {
+            res.status(404).json({ Error: 'Not found' });
+        });
+
+});
+
+// Get my written fortunes
+app.get('/fortunesByUserName/:userName', (req, res) => {
+    const userName = req.params.userName;
+    fortunes.findFortuneByUserName(userName)
         .then(fortune => {
             if (fortune !== null) {
                 res.status(200).json(fortune);
@@ -125,6 +158,23 @@ app.delete('/fortune/:_id', (req, res) => {
             res.status(400).send({ Error: 'Request failed' });
         });
 });
+
+// delete history
+app.delete('/fortunesByUserName/:userName', (req, res) => {
+    fortunes.deleteAll(req.params.userName)
+        .then(deletedCount => {
+            if (deletedCount >= 1) {
+                res.status(204).send();
+            } else {
+                res.status(404).json({ Error: 'Not found' });
+            }
+        })
+        .catch(error => {
+            console.error(error);
+            res.status(400).send({ Error: 'Request failed' });
+        });
+});
+
 
 app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}...`);

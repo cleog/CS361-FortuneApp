@@ -6,6 +6,7 @@
 
 # Some random ID I know is in the DB
 @example_fortune_uuid = 634cc4547bb37264e5fe7bc5
+@userName = Cleo9
 
 ###
 POST http://{{host}}/fortunes HTTP/1.1 
@@ -18,6 +19,10 @@ content-type: application/json
 
 ###
 GET http://{{host}}/fortunes HTTP/1.1
+
+###
+GET http://{{host}}/fortunesByUserName/{{userName}} HTTP/1.1
+
 
 ###
 GET http://{{host}}/fortunes/{{category_general}} HTTP/1.1
@@ -41,3 +46,14 @@ content-type: application/json
 
 ###
 DELETE http://{{host}}/fortune/{{example_fortune_uuid}} HTTP/1.1
+
+
+
+###
+POST http://{{host}}/user HTTP/1.1
+content-type: application/json
+
+{
+    "userName": "test_user_001",
+    "password": "superSecret"
+}

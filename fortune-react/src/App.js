@@ -9,6 +9,8 @@ import HistoryPage from './pages/HistoryPage';
 import WhatsNew from './pages/WhatsNew';
 import InstructionsPage from './pages/InstructionsPage';
 import MainLayout from './layouts/MainLayout';
+import AddUserPage from './pages/AddUserPage';
+import MyFortunesPage from './pages/MyFortunesPage';
 
 
 function App() {
@@ -26,6 +28,8 @@ function App() {
               <Route path="/add/:category" element={<AddFortunePage />} />
               <Route path="/get/:category" element={<ReceiveFortunePage />} />
               <Route path="/edit" element={<EditFortunePage />} />
+              <Route path="/user" element={<AddUserPage />} />
+              <Route path="/mywrittenfortunes" element={<MyFortunesPage />} />
             </Route>
           </Routes>
         </div>

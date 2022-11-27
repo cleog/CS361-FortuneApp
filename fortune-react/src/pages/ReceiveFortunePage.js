@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
+import loggedInUser from '../userid';
 
-const HARDCODED_USERID = 'Cleo9'
 const POST_HISTORY_URL = '/fortuneHistory'
 
 const postFortuneHistoryToMicroservice2 = async (receivedFortune) => {
+    console.log(" recording history for ", receivedFortune.fortune)
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ userId: HARDCODED_USERID, fortuneId: receivedFortune._id, fortuneText: receivedFortune.fortune })
+        body: JSON.stringify({ userId: loggedInUser, fortuneId: receivedFortune._id, fortuneText: receivedFortune.fortune, fortuneCategory: receivedFortune.category })
     };
     await fetch(POST_HISTORY_URL, requestOptions)
 }
@@ -19,13 +20,14 @@ function ReceiveFortunePage() {
     const [fortune, setFortune] = useState(undefined)
 
     const loadRandomFortune = async (category) => {
+        console.log("loadRF")
         const response = await fetch('/randomFortune/' + category);
         const randomFortune = await response.json();
         setFortune(randomFortune)
         postFortuneHistoryToMicroservice2(randomFortune)
     }
-
-    useEffect(() => { loadRandomFortune(category) }, [category])
+ 
+    useEffect(() => { loadRandomFortune(category) }, [])
 
     return (
         <div>
